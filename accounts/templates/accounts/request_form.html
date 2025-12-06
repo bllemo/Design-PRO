@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .mb-3 {
+        margin-left: 10px;
+    }
+</style>
+
+<h2>{% if object %}Редактировать{% else %}Создать{% endif %} заявку</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="{{ form.title.id_for_label }}" class="form-label">Название</label>
+        {{ form.title }}
+    </div>
+    <div class="mb-3">
+        <label for="{{ form.description.id_for_label }}" class="form-label">Описание помещения</label>
+        {{ form.description }}
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="{% url 'accounts:request-list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

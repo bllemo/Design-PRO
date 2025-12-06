@@ -22,6 +22,12 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'logout' %}">Выход</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'accounts:request-list' %}">Мои заявки</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'accounts:request-create' %}">Новая заявка</a>
+                </li>
                 {% else %}
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'login' %}">Вход</a>

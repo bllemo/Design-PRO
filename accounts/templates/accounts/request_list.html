@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .list-group{
+        margin-left: 10px;
+    }
+    .btn {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+</style>
+<h2>Мои заявки</h2>
+
+{% if requests %}
+    <ul class="list-group">
+    {% for req in requests %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="g">
+                <h5>{{ req.title }}</h5>
+                <p class="text-muted">{{ req.description|truncatewords:20 }}</p>
+                <small class="text-muted">Создано: {{ req.created_at|date:"d.m.Y H:i" }}</small>
+            </div>
+            <a href="{% url 'accounts:request-delete' req.pk %}" class="btn btn-sm btn-outline-danger">Удалить</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>У вас пока нет заявок. <a href="{% url 'accounts:request-create' %}">Создать первую</a>.</p>
+{% endif %}
+
+<a href="{% url 'accounts:request-create' %}" class="btn btn-primary">Новая заявка</a>
+{% endblock %}
